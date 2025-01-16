@@ -28,7 +28,8 @@ git clone https://github.com/VictoriaGailitis/to-do-app.git
 cd to-do-app
 ```
 
-### 2. Проверьте, установлен ли docker.
+### 2. Проверьте, установлен ли docker
+При возникновении ошибок с кодом 403 - стоит воспользоваться прокси или зеркалами (при работе с docker hub)
 
 ### 3. Заполните .env файл по шаблону .env.sample
 
