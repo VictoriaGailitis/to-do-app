@@ -30,12 +30,12 @@ cd to-do-app
 
 ### 2. Проверьте, установлен ли docker.
 
-### 3. Заполните .env файл по шаблону
+### 3. Заполните .env файл по шаблону .env.sample
 
 ### 4. Запустите docker compose
 Откройте терминал и напишите данную компанду в корне проекта 
 ```
-docker compose -f docker-compose-.yml up --build -d
+docker compose -f docker-compose.yml up --build -d
 ```
 
 ### 5. Проверьте запуск
