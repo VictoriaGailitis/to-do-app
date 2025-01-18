@@ -2,7 +2,7 @@
 
 *Автор - Гайлитис Виктория*
 
-## Описание сервиса
+## Описание решения
 
 - Backend написан на языке Python с помощью фреймворка FastAPI
 - В качестве базы данных используется PostgreSQL
@@ -10,6 +10,7 @@
 - Реализованы тесты всех эндпоинтов API на pytest
 - Реализован механизм управления (создания, удаления и очищения) тестовой базой данных PostgreSQL для тестов pytest
 - Выполнена докеризация решения (описан Dockerfile API и docker-compose для API и PostgreSQL)
+- Наличие документации Swagger с примерами запросов и ответов сервера
 
 ### Структура проекта:
 
@@ -28,7 +29,8 @@ git clone https://github.com/VictoriaGailitis/to-do-app.git
 cd to-do-app
 ```
 
-### 2. Проверьте, установлен ли docker.
+### 2. Проверьте, установлен ли docker
+При возникновении ошибок с кодом 403 - стоит воспользоваться прокси или зеркалами (при работе с docker hub)
 
 ### 3. Заполните .env файл по шаблону .env.sample
 
@@ -40,3 +42,57 @@ docker compose -f docker-compose.yml up --build -d
 
 ### 5. Проверьте запуск
 После перехода по {Ваш ip сервера или localhost}:8000/api/docs - должна отобразиться документация `Swagger`
+
+### Примеры запросов curl
+
+### 1. Получение всех задач
+```
+curl -X 'GET' \
+  'http://178.253.55.46:8000/api/tasks/' \
+  -H 'accept: application/json'
+```
+
+### 2. Получение всех выполненных задач
+```
+curl -X 'GET' \
+  'http://178.253.55.46:8000/api/tasks/?status=done' \
+  -H 'accept: application/json'
+```
+
+### 3. Добавление новой задачи
+```
+curl -X 'POST' \
+  'http://178.253.55.46:8000/api/tasks/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+   "title": "Записаться к врачу",
+   "description": "На следующий понедельник в 21:00",
+   "status": "todo"
+}'
+```
+
+### 4. Получение задачи по индексу
+```
+curl -X 'GET' \
+  'http://178.253.55.46:8000/api/tasks/2' \
+  -H 'accept: application/json'
+```
+
+### 5. Изменение статуса задачи
+```
+curl -X 'PUT' \
+  'http://178.253.55.46:8000/api/tasks/1' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "status": "done"
+}'
+```
+
+### 6. Удаление задачи
+```
+curl -X 'DELETE' \
+  'http://178.253.55.46:8000/api/tasks/3' \
+  -H 'accept: */*'
+```
