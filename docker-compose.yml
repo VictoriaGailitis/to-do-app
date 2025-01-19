@@ -20,6 +20,16 @@ services:
     volumes:
       - pg_project:/var/lib/postgresql/data
 
+  frontend:
+    container_name: "frontend"
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3030:80"
+    networks:
+      - mynetwork
+
   backend:
     container_name: "backend"
     build:
@@ -38,3 +48,7 @@ services:
 
 volumes:
   pg_project:
+
+networks:
+  mynetwork:
+    driver: bridge
