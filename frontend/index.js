@@ -8,7 +8,7 @@ let TO_DO_ITEMS = [];
 let IN_PROGRESS_ITEMS = [];
 let DONE_ITEMS = [];
 
-const API_URL = "http://localhost:8000/api/tasks/"
+const API_URL = "http://178.253.55.46:8000/api/tasks/"
 
 
 loadTasks();
