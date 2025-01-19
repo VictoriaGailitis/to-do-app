@@ -8,7 +8,8 @@ let TO_DO_ITEMS = [];
 let IN_PROGRESS_ITEMS = [];
 let DONE_ITEMS = [];
 
-const API_URL = "http://178.253.55.46:8000/api/tasks/"
+const API_URL = "http://localhost:8000/api/tasks/"
+
 
 loadTasks();
 
@@ -20,6 +21,9 @@ async function loadTasks() {
     IN_PROGRESS_ITEMS = all_items.filter(item => item.status == "in_progress")
     DONE_ITEMS = all_items.filter(item => item.status == "done")
     renderTasks();
+    activateFormsAdd("#add-todo", TO_DO_ITEMS)
+    activateFormsAdd("#add-in_progress", IN_PROGRESS_ITEMS)
+    activateFormsAdd("#add-done", DONE_ITEMS)   
 }
 
 function renderTasks() {
@@ -77,10 +81,6 @@ function activateButtons() {
 }
 
 function activateForms() {
-    activateFormsAdd("#add-todo", TO_DO_ITEMS)
-    activateFormsAdd("#add-in_progress", IN_PROGRESS_ITEMS)
-    activateFormsAdd("#add-done", DONE_ITEMS)
-
     activateFormsUpdate("#update-todo", TO_DO_ITEMS)
     activateFormsUpdate("#update-in_progress", IN_PROGRESS_ITEMS)
     activateFormsUpdate("#update-done", DONE_ITEMS)
